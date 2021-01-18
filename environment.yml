@@ -1,0 +1,12 @@
+name: energy_transition
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - psycopg2
+  - sqlalchemy
+  - jupyter
+prefix: /Users/marinelafargue/anaconda3/envs/energy_transition
