@@ -13,7 +13,7 @@ import numpy as np
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import seaborn as sns
-from config import name, user, password, host, port
+#from config import name, user, password, host, port
 
 engine = create_engine(f'postgresql://{user}:{password}@{host}/{name}')
 engine
