@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+@st.cache(allow_output_mutation=True)
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import seaborn as sns
