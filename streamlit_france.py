@@ -1,11 +1,3 @@
-user = "clement"
-password = "Hossegor40"
-host = "localhost"
-name = "energy"
-port="5432"
-
-
-
 
 import streamlit as st
 import pandas as pd
@@ -13,7 +5,7 @@ import numpy as np
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import seaborn as sns
-#from config import name, user, password, host, port
+from config import name, user, password, host, port
 
 engine = create_engine(f'postgresql://{user}:{password}@{host}/{name}')
 engine
