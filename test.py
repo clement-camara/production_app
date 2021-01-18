@@ -1,4 +1,5 @@
-
+import psycopg2
+from psycopg2 import OperationalError
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -9,8 +10,34 @@ from config import name, user, password, host, port
 
 
 
-engine = create_engine(f'postgresql://{user}:{password}@{host}/{name}')
-engine
+#engine = create_engine(f'postgresql://{user}:{password}@{host}/{name}')
+#ngine
+def create_connection(db_name,db_user,db_password,db_host,db_port):
+    connection = None
+    try:
+        connection = psycopg2.connect(
+            database = db_name,
+            user = db_user,
+            password = db_password,
+            host = db_host,
+            port = db_port,
+        )
+        cursor = connection.cursor()
+        print("YaY")
+    except OperationalError as error:
+        print(f"Nope '{error}'")
+    return connection
+
+
+def sql_request_to_db(request = str):
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(request)
+            result = cursor.fetchall()
+    return result
+
+connection = create_connection(name, user, password, host, port)
+
 
 
 
@@ -31,5 +58,7 @@ request = """
 """
 
 
-df_import = pd.read_sql(request, engine)
+countries = sql_request_to_db(request)
+
+df_import = pd.read_sql(request, connection)
 df_import
