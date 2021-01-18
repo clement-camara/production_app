@@ -2,14 +2,17 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-@st.cache(allow_output_mutation=True)
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import seaborn as sns
 from config import name, user, password, host, port
 
+
+
 engine = create_engine(f'postgresql://{user}:{password}@{host}/{name}')
 engine
+
+
 
 request = """
     SELECT year AS years, value AS values , countries.name AS countries, flows.name AS flows, products.name AS products
